@@ -259,3 +259,58 @@ def determine_season():
 
 # Call the function
 determine_season()
+
+# Exercise 6: Number Guessing Game
+#
+# Write a Python function named `guess_number` that allows a user to guess a predetermined number within a range.
+#
+# Requirements:
+# - Set a fixed number as the target for guessing (e.g., 42).
+# - Prompt the user to guess a number within a range (e.g., 1 to 100).
+# - Allow the user to guess up to five times.
+# - After each guess, use conditional statements with AND, OR, and NOT to give the user hints like:
+#   - "Guess is too low" or "Guess is too high."
+#   - "Last chance!" when they are on their fifth guess.
+# - Print "Congratulations, you guessed correctly!" if they guess the number.
+# - Print "Sorry, you failed to guess the number in five attempts." if they do not succeed.
+#
+# Hints:
+# - Use a for loop with a range to limit guesses to five.
+# - Use logical AND, OR, and NOT to check conditions and provide appropriate feedback.
+
+# Exercise 6: Number Guessing Game
+
+def guess_number():
+    # Your control flow logic goes here
+    target_number = 42
+    max_attempts = 5
+    
+    print(f"Welcome to the Number Guessing Game! Guess the number between 1 and 100.")
+    
+    for attempt in range(1, max_attempts + 1):
+        if attempt == max_attempts:
+            print("⚠️ Last chance!")
+            
+        while True:
+            guess_input = input(f"Attempt {attempt}/{max_attempts} - Enter your guess: ").strip()
+            
+            if guess_input.isdigit():
+                guess = int(guess_input)
+                if 1 <= guess <= 100:
+                    break
+            
+            print("Invalid input. Please enter a valid integer between 1 and 100.")
+
+        if guess == target_number:
+            print("Congratulations, you guessed correctly!")
+            return 
+        elif guess < target_number:
+            print("Guess is too low.")
+        else:
+            print("Guess is too high.")
+            
+    # Reveal the number here if they exhaust all 5 attempts
+    print(f"Sorry, you failed to guess the number in five attempts. The number was {target_number}!")
+
+# Call the function
+guess_number()
