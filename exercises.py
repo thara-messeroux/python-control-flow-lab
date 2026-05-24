@@ -192,3 +192,70 @@ def weather_advice():
 
 # Call the function
 weather_advice()
+
+
+# Exercise 5: What's the Season?
+#
+# Write a Python function named `determine_season` that figures out the season based on the entered date.
+#
+# Requirements:
+# - The function should first prompt the user to enter the month (as three characters): "Enter the month of the year (Jan - Dec):"
+# - Then, the function should prompt the user to enter the day of the month: "Enter the day of the month:"
+# - Determine the current season based on the date:
+#      - Dec 21 - Mar 19: Winter
+#      - Mar 20 - Jun 20: Spring
+#      - Jun 21 - Sep 21: Summer
+#      - Sep 22 - Dec 20: Fall
+# - Print the season for the entered date in the format: "<Mmm> <dd> is in <season>."
+#
+# Hints:
+# - Use 'in' to check if a string is in a list or tuple.
+# - Adjust the season based on the day of the month when needed.
+# - Ensure to validate input formats and handle unexpected inputs gracefully.
+
+# Exercise 5: What's the Season?
+
+def determine_season():
+    # Your control flow logic goes here
+    month_input = input("Enter the month of the year (Jan - Dec): ").strip().capitalize()
+    day_input = input("Enter the day of the month: ").strip()   
+    
+    # 1. Map months to their maximum allowed days
+    month_days = {
+        'Jan': 31, 'Feb': 29, 'Mar': 31, 'Apr': 30, 'May': 31, 'Jun': 30,
+        'Jul': 31, 'Aug': 31, 'Sep': 30, 'Oct': 31, 'Nov': 30, 'Dec': 31
+    }
+    
+    # Validate month input
+    if month_input not in month_days:
+        print("Invalid month input. Please enter a valid three-letter month (Jan - Dec).")
+        return
+        
+    # Validate day input format
+    if not day_input.isdigit():
+        print("Invalid day input. Please enter a valid integer for the day.")
+        return
+        
+    day = int(day_input)
+    
+    # 2. Validate the day against that specific month's calendar limit
+    max_days = month_days[month_input]
+    if day < 1 or day > max_days:
+        print(f"Invalid day input. {month_input} only has days between 1 and {max_days}.")
+        return
+
+    # Determine season based on your perfectly structured condition trees
+    if (month_input == 'Dec' and day >= 21) or (month_input in ['Jan', 'Feb']) or (month_input == 'Mar' and day <= 19):
+        season = "Winter"
+    elif (month_input == 'Mar' and day >= 20) or (month_input in ['Apr', 'May']) or (month_input == 'Jun' and day <= 20):     
+        season = "Spring"
+    elif (month_input == 'Jun' and day >= 21) or (month_input in ['Jul', 'Aug']) or (month_input == 'Sep' and day <= 21):
+        season = "Summer"
+    else:
+        # Safely falls through to Fall due to strict prior validation
+        season = "Fall"
+        
+    print(f"{month_input} {day} is in {season}.")
+
+# Call the function
+determine_season()
